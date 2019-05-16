@@ -23,6 +23,8 @@ public class PlayerScript : MonoBehaviour
         if (!onGround)
         {
             verticalSpeed -= gravity * Time.deltaTime;
+            if (verticalSpeed <= -5)
+                verticalSpeed = -5;
         }
         else
         {
@@ -67,7 +69,7 @@ public class PlayerScript : MonoBehaviour
     {
         onGround = false;
         rb.gravityScale = 0;
-        verticalSpeed = 6;
+        verticalSpeed = 7;
     }
 
 }

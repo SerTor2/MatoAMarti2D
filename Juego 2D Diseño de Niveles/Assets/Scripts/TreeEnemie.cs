@@ -21,7 +21,7 @@ public class TreeEnemie : MonoBehaviour
     {
         if (player != null)
         {
-            if ((gameObject.transform.position - player.gameObject.transform.position).magnitude <= 50)
+            if ((gameObject.transform.position - player.gameObject.transform.position).magnitude <= 20)
             {
                 currentTime += Time.deltaTime;
                 if (currentTime >= cadencia)

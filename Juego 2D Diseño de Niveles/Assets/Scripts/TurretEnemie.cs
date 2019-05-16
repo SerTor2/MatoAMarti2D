@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretEnemie : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
+    private CircleCollider2D circleCollider;
     public GameObject bulletPrefab;
     private float currentTime = 0;
     private GameObject player;
@@ -13,7 +13,7 @@ public class TurretEnemie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -22,7 +22,7 @@ public class TurretEnemie : MonoBehaviour
     {
         if (player != null)
         {
-            if ((gameObject.transform.position - player.gameObject.transform.position).magnitude <= 50)
+            if ((gameObject.transform.position - player.gameObject.transform.position).magnitude <= 20)
             {
                 currentTime += Time.deltaTime;
                 if(currentTime >= cadencia)
@@ -38,7 +38,7 @@ public class TurretEnemie : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            if (collision.gameObject.transform.position.y > gameObject.transform.position.y + boxCollider.size.y / 6)
+            if (collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 8)
             {
                 collision.gameObject.GetComponent<PlayerScript>().Jump();
                 Destroy(gameObject);

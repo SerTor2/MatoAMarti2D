@@ -7,6 +7,7 @@ public class EnemiePatrol : MonoBehaviour
     public Transform patrol1;
     public Transform patrol2;
     public float speed = 3;
+    public bool killable = true;
     private bool toPatrol1 = true;
     private CircleCollider2D circleCollider;
     // Start is called before the first frame update
@@ -23,24 +24,24 @@ public class EnemiePatrol : MonoBehaviour
             if (toPatrol1)
             {
                 if (patrol1.position.x <= gameObject.transform.position.x)
-                    gameObject.transform.rotation = Quaternion.Euler(0,180,0);
+                    gameObject.transform.rotation = Quaternion.Euler(0,0,0);
                 else
-                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
 
 
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, patrol1.position, speed * Time.deltaTime);
-                if ((patrol1.position - gameObject.transform.position).magnitude <= 0.005)
+                if ((patrol1.position - gameObject.transform.position).magnitude <= 0.05)
                     toPatrol1 = false;
             }
             else
             {
                 if (patrol2.position.x <= gameObject.transform.position.x)
-                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-                else
                     gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                else
+                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
 
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, patrol2.position, speed * Time.deltaTime);
-                if ((patrol2.position - gameObject.transform.position).magnitude <= 0.005)
+                if ((patrol2.position - gameObject.transform.position).magnitude <= 0.05)
                     toPatrol1 = true;
             }
 
@@ -51,7 +52,7 @@ public class EnemiePatrol : MonoBehaviour
     {
         if(collision.gameObject.tag.Equals("Player"))
         {
-            if(collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 4)
+            if(collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 6 && killable)
             {
                 collision.gameObject.GetComponent<PlayerScript>().Jump();
                 Destroy(gameObject);
