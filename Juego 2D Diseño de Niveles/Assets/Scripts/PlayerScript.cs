@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour
     {
         onGround = false;
         rb.gravityScale = 0;
-        verticalSpeed = 8;
+        verticalSpeed = 6;
     }
 
 }
