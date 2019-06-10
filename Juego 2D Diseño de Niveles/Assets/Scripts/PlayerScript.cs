@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     private List<EnemiePatrol> enemiePatrol =  new List<EnemiePatrol>();
     private List<TreeEnemie> enemieTree = new List<TreeEnemie>();
     private List<TurretEnemie> enemieTurret = new List<TurretEnemie>();
+    private List<GameObject> coins = new List<GameObject>();
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,6 +33,18 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject go in enemiesTr)
         {
             enemieTree.Add(go.GetComponent<TreeEnemie>());
+        }
+
+        GameObject[] normalCoins = GameObject.FindGameObjectsWithTag("NormalCoin");
+        foreach (GameObject go in normalCoins)
+        {
+            coins.Add(go);
+        }
+
+        GameObject[] specialCoins = GameObject.FindGameObjectsWithTag("SpecialCoin");
+        foreach (GameObject go in specialCoins)
+        {
+            coins.Add(go);
         }
     }
 
@@ -90,6 +103,10 @@ public class PlayerScript : MonoBehaviour
         {
             checkPoint = collision.gameObject;
         }
+        if(collision.gameObject.tag == "Dead")
+        {
+            Respawn();
+        }
     }
 
     public void Jump()
@@ -137,7 +154,25 @@ public class PlayerScript : MonoBehaviour
             }
             else enemie.Respawn();
         }
-        if(checkPoint != null)
+
+        foreach (GameObject go in coins)
+        {
+            if (checkPoint != null)
+            {
+                if (go.transform.position.x >= checkPoint.transform.position.x)
+                {
+                    go.SetActive(true);
+                }
+            }
+            else go.SetActive(true);
+        }
+
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("Bullet"))
+        {
+            Destroy(go);
+        }
+
+        if (checkPoint != null)
             gameObject.transform.position = checkPoint.transform.position;
     }
 

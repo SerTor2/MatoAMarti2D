@@ -52,6 +52,7 @@ public class TurretEnemie : MonoBehaviour
 
     public void Respawn()
     {
+        currentTime = 0;
         gameObject.SetActive(true);
     }
 }

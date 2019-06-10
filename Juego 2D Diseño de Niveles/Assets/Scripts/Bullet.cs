@@ -17,14 +17,14 @@ public class Bullet : MonoBehaviour
     {
         gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
         currentTime += Time.deltaTime;
-        if (currentTime >= 10)
+        if (currentTime >= 5)
             Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
-            print("Muerte");
+            collision.gameObject.GetComponent<PlayerScript>().Respawn();
         if (collision.gameObject.tag.Equals("Map"))
             Destroy(gameObject);
     }

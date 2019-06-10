@@ -9,11 +9,13 @@ public class EnemiePatrol : MonoBehaviour
     public float speed = 3;
     public bool killable = true;
     private bool toPatrol1 = true;
+    private Vector3 startPos;
     private CircleCollider2D circleCollider;
     // Start is called before the first frame update
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        startPos = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -66,6 +68,9 @@ public class EnemiePatrol : MonoBehaviour
 
     public void Respawn()
     {
+        gameObject.transform.position = startPos;
+        killable = true;
+        toPatrol1 = true;
         gameObject.SetActive(true);
     }
 

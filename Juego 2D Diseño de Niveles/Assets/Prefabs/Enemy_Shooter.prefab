@@ -142,5 +142,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 155054130168390425, guid: 08facbe577494f34ea4aefc7a0eb262e,
     type: 3}
-  cadencia: 2
+  cadencia: 3
   posToBullet: {fileID: 9134838198863937743}
