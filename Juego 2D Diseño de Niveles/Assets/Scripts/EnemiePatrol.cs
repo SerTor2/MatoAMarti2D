@@ -55,13 +55,18 @@ public class EnemiePatrol : MonoBehaviour
             if(collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 6 && killable)
             {
                 collision.gameObject.GetComponent<PlayerScript>().Jump();
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             else
             {
-                Debug.Log("Matar");
+                collision.gameObject.GetComponent<PlayerScript>().Respawn();
             }
         }
+    }
+
+    public void Respawn()
+    {
+        gameObject.SetActive(true);
     }
 
 }

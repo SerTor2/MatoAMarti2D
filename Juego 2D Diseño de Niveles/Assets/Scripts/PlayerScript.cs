@@ -10,10 +10,29 @@ public class PlayerScript : MonoBehaviour
     private float gravity = 20;
     private bool onGround = true;
     private Rigidbody2D rb;
+    public GameObject checkPoint;
+    private List<EnemiePatrol> enemiePatrol =  new List<EnemiePatrol>();
+    private List<TreeEnemie> enemieTree = new List<TreeEnemie>();
+    private List<TurretEnemie> enemieTurret = new List<TurretEnemie>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        GameObject[] enemiesP = GameObject.FindGameObjectsWithTag("EnemiePatrol");
+        foreach(GameObject go in enemiesP)
+        {
+            enemiePatrol.Add(go.GetComponent<EnemiePatrol>());
+        }
+        GameObject[] enemiesT = GameObject.FindGameObjectsWithTag("EnemieTurret");
+        foreach (GameObject go in enemiesT)
+        {
+            enemieTurret.Add(go.GetComponent<TurretEnemie>());
+        }
+        GameObject[] enemiesTr = GameObject.FindGameObjectsWithTag("Arbol");
+        foreach (GameObject go in enemiesTr)
+        {
+            enemieTree.Add(go.GetComponent<TreeEnemie>());
+        }
     }
 
     // Update is called once per frame
@@ -65,11 +84,61 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "CheckPoint")
+        {
+            checkPoint = collision.gameObject;
+        }
+    }
+
     public void Jump()
     {
         onGround = false;
         rb.gravityScale = 0;
         verticalSpeed = 7;
+    }
+
+    public void Respawn()
+    {
+        verticalSpeed = 0;
+        foreach (EnemiePatrol enemie in enemiePatrol)
+        {
+            if (checkPoint != null)
+            {
+                if (enemie.transform.position.x >= checkPoint.transform.position.x)
+                {
+                    enemie.Respawn();
+                }
+            }
+            else enemie.Respawn();
+        }
+
+        foreach (TreeEnemie enemie in enemieTree)
+        {
+            if (checkPoint != null)
+            {
+                if (enemie.transform.position.x >= checkPoint.transform.position.x)
+                {
+                    enemie.Respawn();
+                }
+            }
+            else enemie.Respawn();
+        }
+
+        foreach (TurretEnemie enemie in enemieTurret)
+        {
+            if (checkPoint != null)
+            {
+                if (enemie.transform.position.x >= checkPoint.transform.position.x)
+                {
+                    enemie.Respawn();
+                }
+            }
+            else enemie.Respawn();
+        }
+        if(checkPoint != null)
+            gameObject.transform.position = checkPoint.transform.position;
     }
 
 }

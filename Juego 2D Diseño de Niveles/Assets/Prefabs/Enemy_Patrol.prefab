@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 7122997897124342708}
   m_Layer: 0
   m_Name: Enemie
-  m_TagString: Untagged
+  m_TagString: EnemiePatrol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   patrol1: {fileID: 7095187646315640394}
   patrol2: {fileID: 7095187646551879900}
   speed: 3
+  killable: 1
 --- !u!58 &7095187648106310419
 CircleCollider2D:
   m_ObjectHideFlags: 0

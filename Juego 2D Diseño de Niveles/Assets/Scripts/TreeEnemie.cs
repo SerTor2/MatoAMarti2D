@@ -37,13 +37,19 @@ public class TreeEnemie : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-            print("Muerte");
+            collision.gameObject.GetComponent<PlayerScript>().Respawn();
     }
 
     public void DownLife()
     {
         life--;
         if (life <= 0)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        life = 3;
+        gameObject.SetActive(true);
     }
 }
