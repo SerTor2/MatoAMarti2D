@@ -107,6 +107,14 @@ public class PlayerScript : MonoBehaviour
         {
             Respawn();
         }
+        if(collision.gameObject.tag == "NormalCoin")
+        {
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.tag == "SpecialCoin")
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 
     public void Jump()
