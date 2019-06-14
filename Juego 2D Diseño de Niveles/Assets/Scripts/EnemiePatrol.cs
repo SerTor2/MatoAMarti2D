@@ -54,7 +54,7 @@ public class EnemiePatrol : MonoBehaviour
     {
         if(collision.gameObject.tag.Equals("Player"))
         {
-            if(collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 6 && killable)
+            if(collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 5 && killable)
             {
                 collision.gameObject.GetComponent<PlayerScript>().Jump();
                 gameObject.SetActive(false);

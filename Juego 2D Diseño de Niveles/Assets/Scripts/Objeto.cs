@@ -5,6 +5,8 @@ using UnityEngine;
 public class Objeto : MonoBehaviour
 {
     private bool lanzado = false;
+    public Vector3 forward = Vector3.zero;
+    private float speed = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +17,14 @@ public class Objeto : MonoBehaviour
     void Update()
     {
         if (!lanzado)
-            gameObject.transform.position += Vector3.down * Time.deltaTime * 3;
+        {
+            forward += Vector3.down * Time.deltaTime;
+
+            gameObject.transform.position += forward * Time.deltaTime * speed;
+        }
         else
-            gameObject.transform.position += Vector3.right * Time.deltaTime * 3;
+            gameObject.transform.position += Vector3.right * Time.deltaTime * speed * 2.5f;
+
 
     }
 
@@ -27,10 +34,17 @@ public class Objeto : MonoBehaviour
             lanzado = true;
         else if (collision.gameObject.tag == "Map")
             Destroy(gameObject);
-        else if (collision.gameObject.tag == "Arbol")
+        else if (collision.gameObject.tag == "Arbol" && lanzado)
         {
             collision.gameObject.GetComponent<TreeEnemie>().DownLife();
             Destroy(gameObject);
+        }
+        else if(collision.gameObject.tag == "ReyDDD" && lanzado)
+        {
+            {
+                collision.gameObject.GetComponent<ReyDDDScript>().DownLife();
+                Destroy(gameObject);
+            }
         }
 
 

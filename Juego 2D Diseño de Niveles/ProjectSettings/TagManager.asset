@@ -13,6 +13,7 @@ TagManager:
   - SpecialCoin
   - Bullet
   - Dead
+  - ReyDDD
   layers:
   - Default
   - TransparentFX

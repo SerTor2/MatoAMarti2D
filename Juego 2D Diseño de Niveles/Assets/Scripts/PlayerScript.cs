@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     private List<TreeEnemie> enemieTree = new List<TreeEnemie>();
     private List<TurretEnemie> enemieTurret = new List<TurretEnemie>();
     private List<GameObject> coins = new List<GameObject>();
+    private ReyDDDScript reyDDD;
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,6 +47,7 @@ public class PlayerScript : MonoBehaviour
         {
             coins.Add(go);
         }
+        reyDDD = GameObject.FindGameObjectWithTag("ReyDDD").GetComponent<ReyDDDScript>();
     }
 
     // Update is called once per frame
@@ -179,6 +181,8 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(go);
         }
+
+        reyDDD.Respawn();
 
         if (checkPoint != null)
             gameObject.transform.position = checkPoint.transform.position;
