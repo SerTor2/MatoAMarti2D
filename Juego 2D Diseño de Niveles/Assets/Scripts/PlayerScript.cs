@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     private Vector3 toMove;
-    private float speed = 2;
+    private float speed = 2.5f;
     private float verticalSpeed = 0;
     private float gravity = 20;
     private bool onGround = true;
@@ -80,8 +80,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         toMove += Vector3.up * verticalSpeed;
-
-        gameObject.transform.position += toMove * Time.deltaTime * speed;
+        rb.MovePosition(gameObject.transform.position + toMove * Time.deltaTime * speed);
 
 
     }

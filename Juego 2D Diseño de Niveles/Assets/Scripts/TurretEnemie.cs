@@ -38,7 +38,7 @@ public class TurretEnemie : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            if (collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 5)
+            if (collision.gameObject.transform.position.y > gameObject.transform.position.y + circleCollider.radius / 10)
             {
                 collision.gameObject.GetComponent<PlayerScript>().Jump();
                 gameObject.SetActive(false);

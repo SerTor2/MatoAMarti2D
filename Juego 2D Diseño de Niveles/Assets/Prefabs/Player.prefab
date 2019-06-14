@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6941755728798452206}
   - component: {fileID: 6941755728798452207}
   - component: {fileID: 6941755728798452204}
-  - component: {fileID: 6941755728798452192}
+  - component: {fileID: 7230184394433362664}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 5
 --- !u!58 &6941755728798452204
 CircleCollider2D:
@@ -119,7 +119,7 @@ CircleCollider2D:
   m_Offset: {x: 0.00000014901161, y: 0.10807425}
   serializedVersion: 2
   m_Radius: 1.5213842
---- !u!114 &6941755728798452192
+--- !u!114 &7230184394433362664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6941755728798452205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61046512ceacb445baea89d0a7f875d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75158d540886a9a40b17dfadd3c3a36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPoint: {fileID: 0}
